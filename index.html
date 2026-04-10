@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurora Grand Hotel | Luxury Stay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a class="brand" href="index.html">Aurora <span>Grand</span></a>
+        <button class="menu-toggle" id="menuToggle">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="rooms.html">Rooms</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html" id="loginLink">Login</a>
+          <a href="signup.html" id="signupLink">Signup</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content container">
+        <h1>Experience Elevated Luxury</h1>
+        <p>Discover refined comfort, panoramic views, and unforgettable hospitality at Aurora Grand Hotel.</p>
+      </div>
+    </section>
+
+    <main>
+      <section class="container">
+        <div class="card booking-card">
+          <form class="booking-form" id="homeBookingForm">
+            <div class="form-group">
+              <label for="checkIn">Check-in</label>
+              <input type="date" id="checkIn" required />
+            </div>
+            <div class="form-group">
+              <label for="checkOut">Check-out</label>
+              <input type="date" id="checkOut" required />
+            </div>
+            <div class="form-group">
+              <label for="guests">Guests</label>
+              <select id="guests" required>
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="userBadge">Account</label>
+              <input id="userBadge" type="text" value="Guest Visitor" readonly />
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <label>&nbsp;</label>
+              <button type="submit">Search Available Rooms</button>
+            </div>
+          </form>
+          <div id="bookingMessage" class="message"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Available Rooms</h2>
+            <p>Use the booking form above to discover rooms available for your selected dates.</p>
+          </div>
+          <div class="rooms-grid" id="availableRooms"></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0;">
+        <div class="container two-col">
+          <div class="card about-panel">
+            <h3>Why Stay With Us</h3>
+            <p class="muted">From curated dining to tailored concierge support, every detail is designed for a premium and peaceful escape.</p>
+            <div class="amenities">
+              <span class="amenity">Infinity Pool</span>
+              <span class="amenity">Spa & Wellness</span>
+              <span class="amenity">Chef's Table</span>
+              <span class="amenity">Airport Transfer</span>
+            </div>
+          </div>
+          <img class="card" style="height:100%; object-fit:cover;" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80" alt="Luxury lobby" />
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>Aurora Grand Hotel</h3>
+          <p>17 Marina Bay Avenue, Coastal City</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>Email: reservations@auroragrand.com</p>
+          <p>Phone: +1 (555) 120-8890</p>
+        </div>
+        <div>
+          <h3>Quick Actions</h3>
+          <p><a href="rooms.html">Explore Rooms</a></p>
+          <p><button data-logout="true" style="padding: 0.45rem 0.8rem;">Logout</button></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

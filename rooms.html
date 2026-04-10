@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rooms | Aurora Grand Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a class="brand" href="index.html">Aurora <span>Grand</span></a>
+        <button class="menu-toggle" id="menuToggle">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="rooms.html">Rooms</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html" id="loginLink">Login</a>
+          <a href="signup.html" id="signupLink">Signup</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="page-banner">
+      <div>
+        <h1>Our Rooms & Suites</h1>
+        <p class="muted" style="color: #f5efe5;">Choose your perfect stay from elegant rooms to premium suites.</p>
+      </div>
+    </section>
+
+    <main class="section">
+      <div class="container card booking-card" style="margin-top:0;">
+        <form class="booking-form" id="roomFilterForm">
+          <div class="form-group">
+            <label for="checkIn">Check-in</label>
+            <input type="date" id="checkIn" required />
+          </div>
+          <div class="form-group">
+            <label for="checkOut">Check-out</label>
+            <input type="date" id="checkOut" required />
+          </div>
+          <div class="form-group">
+            <label for="guests">Guests</label>
+            <select id="guests" required>
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+            </select>
+          </div>
+          <div class="form-group" style="justify-content: flex-end; grid-column: span 2;">
+            <label>&nbsp;</label>
+            <button type="submit">Filter Available Rooms</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="container section" style="padding-bottom:0;">
+        <div class="rooms-grid" id="roomsContainer"></div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><h3>Aurora Grand Hotel</h3><p>Luxury perfected in every detail.</p></div>
+        <div><h3>Email</h3><p>reservations@auroragrand.com</p></div>
+        <div><h3>Phone</h3><p>+1 (555) 120-8890</p></div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/rooms.js"></script>
+  </body>
+</html>
