@@ -1,5 +1,3 @@
-const API_BASE = "";
-
 // Shared navbar behavior for mobile menu and active page links.
 document.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
@@ -9,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupContactForm();
   renderUserGreeting();
   setupLogoutButtons();
+  setup3DInteractions();
 });
 
 function setupMobileMenu() {
@@ -70,10 +69,7 @@ function setupHomeBookingSearch() {
     const roomList = document.getElementById("availableRooms");
 
     try {
-      const response = await fetch(
-        `${API_BASE}/api/rooms?checkIn=${encodeURIComponent(checkIn)}&checkOut=${encodeURIComponent(checkOut)}&guests=${encodeURIComponent(guests)}`
-      );
-      const result = await response.json();
+      const result = await window.HotelAPI.getRooms({ checkIn, checkOut, guests });
 
       if (!result.success) {
         showMessage("bookingMessage", "Unable to fetch available rooms.", "error");
@@ -102,7 +98,7 @@ function setupHomeBookingSearch() {
 
 function createRoomCard(room, checkIn, checkOut, guests) {
   const card = document.createElement("article");
-  card.className = "room-card fade-in";
+  card.className = "room-card fade-in floating-3d tilt-card";
 
   card.innerHTML = `
     <img src="${room.image}" alt="${room.name}" />
@@ -136,10 +132,8 @@ function openQuickBooking(room, checkIn, checkOut, guests) {
 
   const user = getCurrentUser();
 
-  fetch(`${API_BASE}/api/bookings`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
+  window.HotelAPI
+    .createBooking({
       roomId: room.id,
       name: guestName,
       email,
@@ -149,8 +143,6 @@ function openQuickBooking(room, checkIn, checkOut, guests) {
       guests: Number(guests),
       userId: user ? user.id : null
     })
-  })
-    .then((res) => res.json())
     .then((data) => {
       if (!data.success) {
         showMessage("bookingMessage", data.message || "Booking failed.", "error");
@@ -200,6 +192,30 @@ function setupLogoutButtons() {
     button.addEventListener("click", () => {
       localStorage.removeItem("hotelUser");
       window.location.reload();
+    });
+  });
+}
+
+// Adds subtle 3D tilt effect for premium visual feel.
+function setup3DInteractions() {
+  const cards = document.querySelectorAll(".card, .room-card, .gallery-grid img");
+  cards.forEach((card) => {
+    card.classList.add("tilt-card");
+
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const midX = rect.width / 2;
+      const midY = rect.height / 2;
+      const rotateY = ((x - midX) / midX) * 5;
+      const rotateX = -((y - midY) / midY) * 5;
+
+      card.style.transform = `translateY(-5px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
     });
   });
 }

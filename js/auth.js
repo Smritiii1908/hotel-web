@@ -15,13 +15,7 @@ function setupSignupForm() {
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password })
-      });
-
-      const result = await response.json();
+      const result = await window.HotelAPI.signup({ name, email, password });
       if (!result.success) {
         showAuthMessage("authMessage", result.message || "Signup failed.", "error");
         return;
@@ -50,13 +44,7 @@ function setupLoginForm() {
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-      });
-
-      const result = await response.json();
+      const result = await window.HotelAPI.login({ email, password });
       if (!result.success) {
         showAuthMessage("authMessage", result.message || "Login failed.", "error");
         return;

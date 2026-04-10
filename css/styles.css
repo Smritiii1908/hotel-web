@@ -22,6 +22,7 @@ body {
   color: var(--text);
   background: radial-gradient(circle at top right, #fff4dc 0%, var(--bg) 35%, #f6efe4 100%);
   min-height: 100vh;
+  perspective: 1200px;
 }
 
 a {
@@ -113,6 +114,19 @@ img {
   transform: scale(1.04);
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  right: -120px;
+  top: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 106, 0.45) 0%, rgba(201, 168, 106, 0) 70%);
+  filter: blur(2px);
+  animation: floatOrb 6s ease-in-out infinite;
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -138,6 +152,9 @@ img {
   background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .booking-card {
@@ -229,11 +246,12 @@ button:hover {
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .room-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.01);
+  box-shadow: 0 18px 40px rgba(37, 33, 29, 0.24);
 }
 
 .room-card img {
@@ -357,7 +375,7 @@ iframe {
 .footer {
   background: #1f1c18;
   color: #f7efe3;
-  padding: 2rem 0;
+  padding: 2rem 0 0;
   margin-top: 2.5rem;
 }
 
@@ -373,6 +391,22 @@ iframe {
   color: #d6ccbc;
 }
 
+.footer-bottom {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(214, 204, 188, 0.22);
+  text-align: center;
+  padding: 0.95rem 0 1.1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.floating-3d {
+  animation: floatingCard 5s ease-in-out infinite;
+}
+
 .fade-in {
   animation: fadeInUp 0.8s ease;
 }
@@ -385,6 +419,26 @@ iframe {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.05);
+  }
+}
+
+@keyframes floatingCard {
+  0%,
+  100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateX(2deg);
   }
 }
 

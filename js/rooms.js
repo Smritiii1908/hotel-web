@@ -8,11 +8,9 @@ async function loadRooms(params = {}) {
   if (!container) return;
 
   const query = new URLSearchParams(params).toString();
-  const endpoint = query ? `/api/rooms?${query}` : "/api/rooms";
 
   try {
-    const response = await fetch(endpoint);
-    const result = await response.json();
+    const result = await window.HotelAPI.getRooms(query ? params : {});
 
     if (!result.success || !Array.isArray(result.rooms)) {
       container.innerHTML = '<p class="muted">Unable to load rooms at the moment.</p>';
@@ -27,7 +25,7 @@ async function loadRooms(params = {}) {
     container.innerHTML = result.rooms
       .map(
         (room) => `
-        <article class="room-card fade-in">
+        <article class="room-card fade-in floating-3d">
           <img src="${room.image}" alt="${room.name}" />
           <div class="room-content">
             <h3>${room.name}</h3>
